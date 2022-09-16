@@ -23,6 +23,8 @@ import excepciones.ActividadRepetidaExcepcion;
 import excepciones.NoexsiteIntDep;
 import interfaces.Fabrica;
 import interfaces.IControlador;
+import logica.MostrarTiempo;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
@@ -41,8 +43,15 @@ public class AltaActividad extends JInternalFrame {
 	private JLabel lblInstitucion;
 	private JComboBox<String> cbxIntitucion;
 	
+	
 	private IControlador iC;
 	private JLabel fondo;
+	private JLabel lblMosFech;
+	private JLabel lblMosHor;
+	public JLabel mostrarFecha;
+	public JLabel mostrarHora;
+	
+	MostrarTiempo fech= new MostrarTiempo();
 
 	public AltaActividad(IControlador iC) {
 		this.iC= iC;
@@ -53,9 +62,10 @@ public class AltaActividad extends JInternalFrame {
         setClosable(true);
         setTitle("Agregar una Actividad");
 		
+        
 		
 		
-		setBounds(100, 100, 489, 340);
+		setBounds(100, 100, 519, 439);
 		getContentPane().setLayout(null);
 		
 		cbxIntitucion = new JComboBox<String>();
@@ -123,6 +133,24 @@ public class AltaActividad extends JInternalFrame {
 				fondo = new JLabel("");
 				fondo.setBounds(0, 0, 477, 311);
 				getContentPane().add(fondo);
+				
+				lblMosFech = new JLabel("Fecha");
+				lblMosFech.setBounds(31, 332, 67, 14);
+				getContentPane().add(lblMosFech);
+				
+				lblMosHor = new JLabel("Hora");
+				lblMosHor.setBounds(217, 332, 67, 14);
+				getContentPane().add(lblMosHor);
+				
+				mostrarFecha = new JLabel(fech.fechaComp);
+				mostrarFecha.setBounds(82, 332, 94, 14);
+				getContentPane().add(mostrarFecha);
+				
+				
+				mostrarHora = new JLabel(fech.horaComp);			
+				mostrarHora.setBounds(268, 332, 100, 14);
+				getContentPane().add(mostrarHora);
+				
 				Imagen();
 				
 				btnCancelar.addActionListener(new ActionListener() {
@@ -202,4 +230,10 @@ public class AltaActividad extends JInternalFrame {
 		Icon icono= new ImageIcon(imagen.getImage().getScaledInstance(fondo.getWidth(),fondo.getHeight(),Image.SCALE_DEFAULT));
 		fondo.setIcon(icono);
 	}
+	
+	/*public void mostrarTiempo() {
+		
+		mostrarFecha.setText(fech.fechaComp);
+		mostrarHora.setText(fech.horaComp);				
+	}*/
 }
